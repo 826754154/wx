@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--指定项目名称，和项目的作者-->
+    <dubbo:application  name="dubbo-demo-provider" owner="zhang"/>
+    <!--使用什么样的协议托管服务-->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" file="~/.dubbo/dubbo-demo-provider.cache"/>
+    <!--设置DUBBO服务使用端口。-1表示随机一个端口号-->
+    <dubbo:protocol name="dubbo" port="-1"/>
+    <!--指定要提供的服务，ref代表的是实现类的对象名-->
+    <dubbo:service interface="com.hzit.wxnet.service.QrcodeService" ref="qrcodeServiceImpl"/>
+    <dubbo:service interface="com.hzit.wxnet.service.WxUserinfoService" ref="wxUserinfoServiceImpl"/>
+    <dubbo:service interface="com.hzit.wxnet.service.AccessTokenService" ref="accessTokenServiceImpl"/>
+    <dubbo:service interface="com.hzit.wxnet.service.MessageService" ref="messageServiceImpl"/>
+    <dubbo:provider timeout="5000" />
+</beans>
